@@ -12,7 +12,8 @@ local function SetSlotFilter(self, bagID, slotID)
 
     if f.FilterHolder.active and self.Bags[bagID] and self.Bags[bagID][slotID] then
         local link = GetContainerItemLink(bagID, slotID);
-        if not link or f.FilterHolder[f.FilterHolder.active].filter(link, select(12, GetItemInfo(link))) then
+        local location = { bagID = bagID, slotIndex = slotID };
+        if not link or f.FilterHolder[f.FilterHolder.active].filter(location, link, select(12, GetItemInfo(link))) then
             self.Bags[bagID][slotID].searchOverlay:Hide();
         else
             self.Bags[bagID][slotID].searchOverlay:Show();
@@ -162,34 +163,34 @@ do
     
     U.Filters = {
         { L.All, 'Interface/Icons/INV_Misc_EngGizmos_17', 
-          function(link, type, subType) 
+          function(location, link, type, subType) 
               return true;
           end
         },
         { L.Equipment, 'Interface/Icons/INV_Chest_Chain_04', 
-          function(link, type, subType) 
+          function(location, link, type, subType) 
               return type == LE_ITEM_CLASS_ARMOR or type == LE_ITEM_CLASS_WEAPON; 
           end
         },
         { L.Consumable, 'Interface/Icons/INV_Potion_93', 
-          function(link, type, subType) 
+          function(location, link, type, subType) 
               return type == LE_ITEM_CLASS_CONSUMABLE;
           end
         },
         { L.Quest, 'Interface/QuestFrame/UI-QuestLog-BookIcon',
-          function(link, type, subType)
+          function(location, link, type, subType)
               return type == LE_ITEM_CLASS_QUESTITEM;
           end
         },
         { L.TradeGood, 'Interface/Icons/INV_Fabric_Silk_02',
-          function(link, type, subType)
+          function(location, link, type, subType)
               return type == LE_ITEM_CLASS_TRADEGOODS or 
                 type == LE_ITEM_CLASS_RECIPE or type == LE_ITEM_CLASS_GEM or 
                 type == LE_ITEM_CLASS_ITEM_ENHANCEMENT or type == LE_ITEM_CLASS_GLYPH;
           end
         },
         { L.Misc, 'Interface/Icons/INV_Misc_Rune_01',
-          function(link, type, subType)
+          function(location, link, type, subType)
               return type == LE_ITEM_CLASS_MISCELLANEOUS or
                 type == LE_ITEM_CLASS_BATTLEPET or type == LE_ITEM_CLASS_CONTAINER;
           end
