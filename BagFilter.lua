@@ -118,10 +118,10 @@ local function AddMenuButton(isBank)
     f.filterButton:SetSize(16 + E.Border, 16 + E.Border);
     f.filterButton:SetTemplate();
     f.filterButton:SetPoint("RIGHT", f.sortButton, "LEFT", -5, 0);
-    f.filterButton:SetNormalTexture("Interface\\ICONS\\ACHIEVEMENT_GUILDPERK_BOUNTIFULBAGS");
+    f.filterButton:SetNormalTexture('Interface/ICONS/ACHIEVEMENT_GUILDPERK_BOUNTIFULBAGS');
     f.filterButton:GetNormalTexture():SetTexCoord(unpack(E.TexCoords));
     f.filterButton:GetNormalTexture():SetInside();
-    f.filterButton:SetPushedTexture("Interface\\ICONS\\ACHIEVEMENT_GUILDPERK_BOUNTIFULBAGS");
+    f.filterButton:SetPushedTexture('Interface/ICONS/ACHIEVEMENT_GUILDPERK_BOUNTIFULBAGS');
     f.filterButton:GetPushedTexture():SetTexCoord(unpack(E.TexCoords));
     f.filterButton:GetPushedTexture():SetInside();
     f.filterButton:StyleButton(nil, true);
@@ -169,7 +169,8 @@ do
         },
         { L.Equipment, 'Interface/Icons/INV_Chest_Chain_04', 
           function(location, link, type, subType) 
-              return type == LE_ITEM_CLASS_ARMOR or type == LE_ITEM_CLASS_WEAPON; 
+              return type == LE_ITEM_CLASS_ARMOR or 
+                     type == LE_ITEM_CLASS_WEAPON; 
           end
         },
         { L.Consumable, 'Interface/Icons/INV_Potion_93', 
@@ -185,14 +186,17 @@ do
         { L.TradeGood, 'Interface/Icons/INV_Fabric_Silk_02',
           function(location, link, type, subType)
               return type == LE_ITEM_CLASS_TRADEGOODS or 
-                type == LE_ITEM_CLASS_RECIPE or type == LE_ITEM_CLASS_GEM or 
-                type == LE_ITEM_CLASS_ITEM_ENHANCEMENT or type == LE_ITEM_CLASS_GLYPH;
+                     type == LE_ITEM_CLASS_RECIPE or 
+                     type == LE_ITEM_CLASS_GEM or 
+                     type == LE_ITEM_CLASS_ITEM_ENHANCEMENT or 
+                     type == LE_ITEM_CLASS_GLYPH;
           end
         },
         { L.Misc, 'Interface/Icons/INV_Misc_Rune_01',
           function(location, link, type, subType)
               return type == LE_ITEM_CLASS_MISCELLANEOUS or
-                type == LE_ITEM_CLASS_BATTLEPET or type == LE_ITEM_CLASS_CONTAINER;
+                     type == LE_ITEM_CLASS_BATTLEPET or 
+                     type == LE_ITEM_CLASS_CONTAINER;
           end
         },
     };
