@@ -155,7 +155,6 @@ do
     L.Quest = AUCTION_CATEGORY_QUEST_ITEMS;
     L.BattlePets = AUCTION_CATEGORY_BATTLE_PETS;
     L.Enhancement = AUCTION_CATEGORY_ITEM_ENHANCEMENT;
-    L.Power = ARTIFACT_POWER;
 
     L.All = ALL;
     L.Equipment = L.Weapon .. ' & ' .. L.Armor;
@@ -187,11 +186,6 @@ do
               return type == LE_ITEM_CLASS_TRADEGOODS or 
                 type == LE_ITEM_CLASS_RECIPE or type == LE_ITEM_CLASS_GEM or 
                 type == LE_ITEM_CLASS_ITEM_ENHANCEMENT or type == LE_ITEM_CLASS_GLYPH;
-          end
-        },
-        { L.Power, 'Interface/Icons/INV_Artifact_XP01',
-          function(link, type, subType)
-              return type == LE_ITEM_CLASS_CONSUMABLE and link:find(":8388608:");
           end
         },
         { L.Misc, 'Interface/Icons/INV_Misc_Rune_01',
