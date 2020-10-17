@@ -70,7 +70,7 @@ local function AddFilterButtons(f, isBank)
         if not f.FilterHolder[i] then
             local name, icon, func = unpack(filter);
 
-            f.FilterHolder[i] = CreateFrame('CheckButton', nil, f.FilterHolder);
+            f.FilterHolder[i] = CreateFrame('CheckButton', nil, f.FilterHolder, 'BackdropTemplate');
             f.FilterHolder[i]:SetTemplate('Default', true);
             f.FilterHolder[i]:StyleButton();
             f.FilterHolder[i]:SetNormalTexture('');
@@ -109,12 +109,12 @@ local function AddMenuButton(isBank)
     local f = B:GetContainerFrame(isBank);
     
     if not f or f.FilterHolder then return; end
-    f.FilterHolder = CreateFrame('Button', nil, f);
+    f.FilterHolder = CreateFrame('Button', nil, f, 'BackdropTemplate');
     f.FilterHolder:Point('BOTTOMLEFT', f, 'TOPLEFT', 0, 1);
     f.FilterHolder:SetTemplate('Transparent');
     f.FilterHolder:Hide();
     
-    f.filterButton = CreateFrame('Button', nil, f.holderFrame);
+    f.filterButton = CreateFrame('Button', nil, f.holderFrame, 'BackdropTemplate');
     f.filterButton:SetSize(16 + E.Border, 16 + E.Border);
     f.filterButton:SetTemplate();
     f.filterButton:SetPoint("RIGHT", f.sortButton, "LEFT", -5, 0);
