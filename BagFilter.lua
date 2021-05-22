@@ -31,7 +31,7 @@ local function SetFilter(self)
         end
     end
     f.FilterHolder.active = self:GetID();
-        
+
     for i, bagID in ipairs(f.BagIDs) do
         if f.Bags[bagID] then
             for slotID = 1, f.Bags[bagID].numSlots do
@@ -48,7 +48,7 @@ local function ResetFilter(self)
     if f.FilterHolder.active then
         f.FilterHolder[f.FilterHolder.active]:SetChecked(nil);
         f.FilterHolder.active = nil;
-        
+
         for i, bagID in ipairs(f.BagIDs) do
             if f.Bags[bagID] then
                 for slotID = 1, f.Bags[bagID].numSlots do
@@ -60,7 +60,7 @@ local function ResetFilter(self)
         end
     end
 end
-    
+
 local function AddFilterButtons(f, isBank)
     local buttonSize = isBank and B.db.bankSize or B.db.bagSize;
     local buttonSpacing = E.Border * 2;
@@ -89,9 +89,9 @@ local function AddFilterButtons(f, isBank)
             f.FilterHolder[i].iconTexture:SetTexCoord(unpack(E.TexCoords));
             f.FilterHolder[i].iconTexture:SetTexture(icon);
         end
-        
+
         f.FilterHolder:Size(((buttonSize + buttonSpacing) * i) + buttonSpacing, buttonSize + (buttonSpacing * 2));
-          
+
         f.FilterHolder[i]:Size(buttonSize);
         f.FilterHolder[i]:ClearAllPoints();
         if i == 1 then
@@ -99,7 +99,7 @@ local function AddFilterButtons(f, isBank)
         else
             f.FilterHolder[i]:SetPoint('LEFT', lastContainerButton, 'RIGHT', buttonSpacing, 0);
         end
-        
+
         lastContainerButton = f.FilterHolder[i];
     end
 end
@@ -107,13 +107,13 @@ end
 local function AddMenuButton(isBank)
     if E.private.bags.enable ~= true then return; end
     local f = B:GetContainerFrame(isBank);
-    
+
     if not f or f.FilterHolder then return; end
     f.FilterHolder = CreateFrame('Button', nil, f, 'BackdropTemplate');
     f.FilterHolder:Point('BOTTOMLEFT', f, 'TOPLEFT', 0, 1);
     f.FilterHolder:SetTemplate('Transparent');
     f.FilterHolder:Hide();
-    
+
     f.filterButton = CreateFrame('Button', nil, f.holderFrame, 'BackdropTemplate');
     f.filterButton:SetSize(16 + E.Border, 16 + E.Border);
     f.filterButton:SetTemplate();
@@ -128,15 +128,15 @@ local function AddMenuButton(isBank)
     f.filterButton.ttText = L.Filter;
     f.filterButton:SetScript('OnEnter', B.Tooltip_Show);
     f.filterButton:SetScript('OnLeave', B.Tooltip_Hide);
-    f.filterButton:SetScript('OnClick', function() 
+    f.filterButton:SetScript('OnClick', function()
         f.ContainerHolder:Hide();
         ToggleFrame(f.FilterHolder);
     end);
-    
+
     f.bagsButton:HookScript('OnClick', function()
         f.FilterHolder:Hide();
     end);
-    
+
     -- realign
     f.bagsButton:SetPoint("RIGHT", f.filterButton, "LEFT", -5, 0);
 
@@ -156,26 +156,26 @@ do
     L.Quest = AUCTION_CATEGORY_QUEST_ITEMS;
     L.BattlePets = AUCTION_CATEGORY_BATTLE_PETS;
     L.Enhancement = AUCTION_CATEGORY_ITEM_ENHANCEMENT;
-    L.New = NEW ;
+    L.New = NEW;
 
     L.All = ALL;
     L.Equipment = L.Weapon .. ' & ' .. L.Armor;
     L.Filter = FILTER;
-    
+
     U.Filters = {
-        { L.All, 'Interface/Icons/INV_Misc_EngGizmos_17', 
-          function(location, link, type, subType) 
+        { L.All, 'Interface/Icons/INV_Misc_EngGizmos_17',
+          function(location, link, type, subType)
               return true;
           end
         },
-        { L.Equipment, 'Interface/Icons/INV_Chest_Chain_04', 
-          function(location, link, type, subType) 
-              return type == LE_ITEM_CLASS_ARMOR or 
-                     type == LE_ITEM_CLASS_WEAPON; 
+        { L.Equipment, 'Interface/Icons/INV_Chest_Chain_04',
+          function(location, link, type, subType)
+              return type == LE_ITEM_CLASS_ARMOR or
+                     type == LE_ITEM_CLASS_WEAPON;
           end
         },
-        { L.Consumable, 'Interface/Icons/INV_Potion_93', 
-          function(location, link, type, subType) 
+        { L.Consumable, 'Interface/Icons/INV_Potion_93',
+          function(location, link, type, subType)
               return type == LE_ITEM_CLASS_CONSUMABLE;
           end
         },
@@ -186,34 +186,39 @@ do
         },
         { L.TradeGood, 'Interface/Icons/INV_Fabric_Silk_02',
           function(location, link, type, subType)
-              return type == LE_ITEM_CLASS_TRADEGOODS or 
-                     type == LE_ITEM_CLASS_RECIPE or 
-                     type == LE_ITEM_CLASS_GEM or 
-                     type == LE_ITEM_CLASS_ITEM_ENHANCEMENT or 
+              return type == LE_ITEM_CLASS_TRADEGOODS or
+                     type == LE_ITEM_CLASS_RECIPE or
+                     type == LE_ITEM_CLASS_GEM or
+                     type == LE_ITEM_CLASS_ITEM_ENHANCEMENT or
                      type == LE_ITEM_CLASS_GLYPH;
           end
         },
         { L.Misc, 'Interface/Icons/INV_Misc_Rune_01',
           function(location, link, type, subType)
               return type == LE_ITEM_CLASS_MISCELLANEOUS or
-                     type == LE_ITEM_CLASS_BATTLEPET or 
                      type == LE_ITEM_CLASS_CONTAINER;
           end
         },
-        { L.New, 'Interface/PaperDollInfoFrame/UI-GearManager-ItemIntoBag', -- Achievement_Guild_DoctorIsIn.blp Spell_ChargePositive.blp UI_Mission_ItemUpgrade.blp 
+        { L.BattlePets, 'Interface/Icons/INV_Pet_BattlePetTraining',
+          function(location, link, type, subType)
+              return type == LE_ITEM_CLASS_BATTLEPET or
+                    (type == LE_ITEM_CLASS_MISCELLANEOUS and subType == LE_ITEM_MISCELLANEOUS_COMPANION_PET);
+          end
+        },
+        { L.New, 'Interface/PaperDollInfoFrame/UI-GearManager-ItemIntoBag',
           function(location, link, type, subType)
              return C_NewItems.IsNewItem(location.bagID, location.slotIndex);
           end
       }
     };
-       
+
     U.numFilters = #U.Filters;
-    
+
     hooksecurefunc(B, 'Layout', function(self, isBank)
         AddMenuButton(isBank);
     end);
-    
+
     hooksecurefunc(B, 'UpdateSlot', function(self, frame, bagID, slotID)
-        SetSlotFilter(frame, bagID, slotID); 
+        SetSlotFilter(frame, bagID, slotID);
     end);
 end
