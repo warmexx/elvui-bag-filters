@@ -1,6 +1,6 @@
-## Interface: 90002
+## Interface: 90005
 ## Title: |cff1784d1ElvUI|r Bag Filters
-## Version: 6.1
+## Version: 6.2
 ## Author: Warmexx [Neighbours]
 ## Dependencies: ElvUI
 ## X-Donate: PayPal:warmexx AT wow-neighbours DOT com
