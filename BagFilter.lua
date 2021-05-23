@@ -182,7 +182,8 @@ do
         },
         { L.Equipment, 'Interface/Icons/INV_Chest_Chain_04',
           function(location, link, type, subType)
-              return type == LE_ITEM_CLASS_ARMOR or type == LE_ITEM_CLASS_WEAPON;
+              return type == LE_ITEM_CLASS_ARMOR or
+                     type == LE_ITEM_CLASS_WEAPON;
           end
         },
         { L.Consumable, 'Interface/Icons/INV_Potion_93',
@@ -206,7 +207,8 @@ do
         },
         { L.Misc, 'Interface/Icons/INV_Misc_Rune_01',
           function(location, link, type, subType)
-              return type == LE_ITEM_CLASS_MISCELLANEOUS or type == LE_ITEM_CLASS_CONTAINER;
+              return type == LE_ITEM_CLASS_MISCELLANEOUS or
+                     type == LE_ITEM_CLASS_CONTAINER;
           end
         },
         { L.New, 'Interface/PaperDollInfoFrame/UI-GearManager-ItemIntoBag',
