@@ -8,5 +8,8 @@
 ## X-Date: @project-date-iso@
 ## X-Donate: PayPal:warmexx AT wow-neighbours DOT com
 ## X-Website: https://github.com/warmexx/elvui-bag-filters
+## X-Curse-Project-ID: 49767
+## X-WoWI-ID: 26030
+## X-Wago-ID: WL6JJj6v
 
 BagFilter.lua
