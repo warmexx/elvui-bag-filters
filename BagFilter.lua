@@ -1,6 +1,6 @@
 if not IsAddOnLoaded('ElvUI') then return; end
 
-local E, L, V, P, G = unpack(ElvUI); --Import: Engine, Locales, PrivateDB, ProfileDB, GlobalDB
+local E, L, V, P, G = unpack(ElvUI); -- Import: Engine, Locales, PrivateDB, ProfileDB, GlobalDB
 local B = E:GetModule('Bags');
 
 local U = select(2, ...);
@@ -70,7 +70,11 @@ local function AddFilterButtons(f, isBank)
         if not f.FilterHolder[i] then
             local name, icon, func = unpack(filter);
 
-            f.FilterHolder[i] = CreateFrame('CheckButton', nil, f.FilterHolder, 'BackdropTemplate');
+            if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
+                f.FilterHolder[i] = CreateFrame('CheckButton', nil, f.FilterHolder);
+            else
+                f.FilterHolder[i] = CreateFrame('CheckButton', nil, f.FilterHolder, 'BackdropTemplate');
+            end
             f.FilterHolder[i]:SetTemplate('Default', true);
             f.FilterHolder[i]:StyleButton();
             f.FilterHolder[i]:SetNormalTexture('');
@@ -109,19 +113,27 @@ local function AddMenuButton(isBank)
     local f = B:GetContainerFrame(isBank);
 
     if not f or f.FilterHolder then return; end
-    f.FilterHolder = CreateFrame('Button', nil, f, 'BackdropTemplate');
+    if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
+        f.FilterHolder = CreateFrame('Button', nil, f);
+    else
+        f.FilterHolder = CreateFrame('Button', nil, f, 'BackdropTemplate');
+    end
     f.FilterHolder:Point('BOTTOMLEFT', f, 'TOPLEFT', 0, 1);
     f.FilterHolder:SetTemplate('Transparent');
     f.FilterHolder:Hide();
 
-    f.filterButton = CreateFrame('Button', nil, f.holderFrame, 'BackdropTemplate');
+    if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
+        f.filterButton = CreateFrame('Button', nil, f.holderFrame);
+    else
+        f.filterButton = CreateFrame('Button', nil, f.holderFrame, 'BackdropTemplate');
+    end
     f.filterButton:SetSize(16 + E.Border, 16 + E.Border);
     f.filterButton:SetTemplate();
     f.filterButton:SetPoint("RIGHT", f.sortButton, "LEFT", -5, 0);
-    f.filterButton:SetNormalTexture('Interface/ICONS/ACHIEVEMENT_GUILDPERK_BOUNTIFULBAGS');
+    f.filterButton:SetNormalTexture('Interface/AddOns/ElvUI_Bagfilter/BagFilter');
     f.filterButton:GetNormalTexture():SetTexCoord(unpack(E.TexCoords));
     f.filterButton:GetNormalTexture():SetInside();
-    f.filterButton:SetPushedTexture('Interface/ICONS/ACHIEVEMENT_GUILDPERK_BOUNTIFULBAGS');
+    f.filterButton:SetPushedTexture('Interface/AddOns/ElvUI_Bagfilter/BagFilter');
     f.filterButton:GetPushedTexture():SetTexCoord(unpack(E.TexCoords));
     f.filterButton:GetPushedTexture():SetInside();
     f.filterButton:StyleButton(nil, true);
@@ -141,7 +153,7 @@ local function AddMenuButton(isBank)
     f.bagsButton:SetPoint("RIGHT", f.filterButton, "LEFT", -5, 0);
 
     AddFilterButtons(f, isBank);
- end
+end
 
 do
     L.Weapon = AUCTION_CATEGORY_WEAPONS;
@@ -170,8 +182,7 @@ do
         },
         { L.Equipment, 'Interface/Icons/INV_Chest_Chain_04',
           function(location, link, type, subType)
-              return type == LE_ITEM_CLASS_ARMOR or
-                     type == LE_ITEM_CLASS_WEAPON;
+              return type == LE_ITEM_CLASS_ARMOR or type == LE_ITEM_CLASS_WEAPON;
           end
         },
         { L.Consumable, 'Interface/Icons/INV_Potion_93',
@@ -195,22 +206,26 @@ do
         },
         { L.Misc, 'Interface/Icons/INV_Misc_Rune_01',
           function(location, link, type, subType)
-              return type == LE_ITEM_CLASS_MISCELLANEOUS or
-                     type == LE_ITEM_CLASS_CONTAINER;
-          end
-        },
-        { L.BattlePets, 'Interface/Icons/INV_Pet_BattlePetTraining',
-          function(location, link, type, subType)
-              return type == LE_ITEM_CLASS_BATTLEPET or
-                    (type == LE_ITEM_CLASS_MISCELLANEOUS and subType == LE_ITEM_MISCELLANEOUS_COMPANION_PET);
+              return type == LE_ITEM_CLASS_MISCELLANEOUS or type == LE_ITEM_CLASS_CONTAINER;
           end
         },
         { L.New, 'Interface/PaperDollInfoFrame/UI-GearManager-ItemIntoBag',
           function(location, link, type, subType)
-             return C_NewItems.IsNewItem(location.bagID, location.slotIndex);
+              return C_NewItems.IsNewItem(location.bagID, location.slotIndex);
           end
-      }
+        }
     };
+
+    if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+        table.insert(U.Filters, table.getn(U.Filters),
+            { L.BattlePets, 'Interface/Icons/INV_Pet_BattlePetTraining',
+              function(location, link, type, subType)
+                  return type == LE_ITEM_CLASS_BATTLEPET or
+                        (type == LE_ITEM_CLASS_MISCELLANEOUS and subType == LE_ITEM_MISCELLANEOUS_COMPANION_PET);
+              end
+            }
+        )
+    end
 
     U.numFilters = #U.Filters;
 

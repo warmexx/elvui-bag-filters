@@ -1,5 +1,5 @@
-## Interface: 90005
-## Title: |cff1784d1ElvUI|r Bag Filters
+## Interface: 20501
+## Title: |cff1784d1ElvUI TBC|r Bag Filters
 ## Version: 7.1
 ## Author: Warmexx [Neighbours]
 ## Dependencies: ElvUI
