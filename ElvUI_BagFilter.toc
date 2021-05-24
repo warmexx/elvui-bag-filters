@@ -1,7 +1,16 @@
-## Interface-Retail: 90005
-## Interface-Classic: 11307
-## Interface-BCC: 20501
+
+## Interface: 90005
+#@version-retail@
 ## Title: |cff1784d1ElvUI|r Bag Filters
+#@end-version-retail@
+## Interface-Classic: 11307
+#@version-classic@
+## Title: |cff1784d1ElvUI Classic|r Bag Filters
+#@end-version-classic@
+## Interface-BCC: 20501
+#@version-bcc@
+## Title: |cff1784d1ElvUI TBC|r Bag Filters
+#@end-version-bcc@
 ## Version: @project-version@
 ## Author: Warmexx [Neighbours]
 ## Dependencies: ElvUI
