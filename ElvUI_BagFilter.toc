@@ -1,13 +1,13 @@
 
-## Interface: 90005
+## Interface: 90105
 #@version-retail@
 ## Title: |cff1784d1ElvUI|r Bag Filters
 #@end-version-retail@
-## Interface-Classic: 11307
+## Interface-Classic: 11401
 #@version-classic@
 ## Title: |cff1784d1ElvUI Classic|r Bag Filters
 #@end-version-classic@
-## Interface-BCC: 20501
+## Interface-BCC: 20502
 #@version-bcc@
 ## Title: |cff1784d1ElvUI TBC|r Bag Filters
 #@end-version-bcc@
