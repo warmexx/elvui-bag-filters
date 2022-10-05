@@ -1,6 +1,8 @@
 ## Interface: 90207
 ## Interface-Classic: 11403
 ## Interface-BCC: 20504
+## Interface-WOTLKC: 30400
+## Title: |cff1784d1ElvUI|r Bag Filters
 ## Version: @project-version@
 ## Author: Warmexx [Neighbours]
 ## Dependencies: ElvUI
