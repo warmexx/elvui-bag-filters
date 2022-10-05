@@ -1,9 +1,9 @@
 
-## Interface: 90200
+## Interface: 90207
 #@version-retail@
 ## Title: |cff1784d1ElvUI|r Bag Filters
 #@end-version-retail@
-## Interface-Classic: 11402
+## Interface-Classic: 11403
 #@version-classic@
 ## Title: |cff1784d1ElvUI Classic|r Bag Filters
 #@end-version-classic@
