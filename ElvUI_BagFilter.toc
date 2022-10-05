@@ -1,8 +1,19 @@
 ## Interface: 90207
-## Interface-Classic: 11403
-## Interface-BCC: 20504
-## Interface-WOTLKC: 30400
+#@version-retail@
 ## Title: |cff1784d1ElvUI|r Bag Filters
+#@end-version-retail@
+## Interface-Classic: 11403
+#@version-classic@
+## Title: |cff1784d1ElvUI Classic|r Bag Filters
+#@end-version-classic@
+## Interface-BCC: 20504
+#@version-bcc@
+## Title: |cff1784d1ElvUI TBC|r Bag Filters
+#@end-version-bcc@
+## Interface-WOTLKC: 30400
+#@version-wrath@
+## Title: |cff1784d1ElvUI Wrath|r Bag Filters
+#@end-version-wrath@
 ## Version: @project-version@
 ## Author: Warmexx [Neighbours]
 ## Dependencies: ElvUI
