@@ -10,7 +10,7 @@ local isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE;
 local isClassic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC;
 
 local function SetSlotFilter(self, bagID, slotID)
-    local f = B:GetContainerFrame(bagID > NUM_BAG_SLOTS or bagID == BANK_CONTAINER);
+    local f = B:GetContainerFrame(bagID > (NUM_TOTAL_EQUIPPED_BAG_SLOTS or NUM_BAG_SLOTS) or bagID == BANK_CONTAINER);
     if not (f and f.FilterHolder) then return; end
 
     if f.FilterHolder.active and self.Bags[bagID] and self.Bags[bagID][slotID] then
