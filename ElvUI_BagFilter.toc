@@ -1,4 +1,4 @@
-## Interface: 100002
+## Interface: 100005
 #@version-retail@
 ## Title: |cff1784d1ElvUI|r Bag Filters
 #@end-version-retail@
@@ -10,7 +10,7 @@
 #@version-bcc@
 ## Title: |cff1784d1ElvUI TBC|r Bag Filters
 #@end-version-bcc@
-## Interface-WOTLKC: 30400
+## Interface-WOTLKC: 30401
 #@version-wrath@
 ## Title: |cff1784d1ElvUI Wrath|r Bag Filters
 #@end-version-wrath@
