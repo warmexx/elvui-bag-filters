@@ -16,11 +16,7 @@ local function SetSlotFilter(self, bagID, slotID)
     if f.FilterHolder.active and self.Bags[bagID] and self.Bags[bagID][slotID] then
         local location = { bagID = bagID, slotIndex = slotID };
         local link;
-        if isClassic then
-            link = GetContainerItemLink(bagID, slotID);
-        else
-            link = C_Container.GetContainerItemLink(bagID, slotID);
-        end
+        link = C_Container.GetContainerItemLink(bagID, slotID);
         if not link or f.FilterHolder[f.FilterHolder.active].filter(location, link, select(12, GetItemInfo(link))) then
             self.Bags[bagID][slotID].searchOverlay:Hide();
         else
