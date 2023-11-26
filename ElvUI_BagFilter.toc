@@ -2,7 +2,7 @@
 #@version-retail@
 ## Title: |cff1784d1ElvUI|r Bag Filters
 #@end-version-retail@
-## Interface-Classic: 11404
+## Interface-Classic: 11500
 #@version-classic@
 ## Title: |cff1784d1ElvUI Classic|r Bag Filters
 #@end-version-classic@
