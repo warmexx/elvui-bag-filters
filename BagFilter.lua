@@ -1,5 +1,3 @@
-if not IsAddOnLoaded('ElvUI') then return; end
-
 local E, L, V, P, G = unpack(ElvUI); -- Import: Engine, Locales, PrivateDB, ProfileDB, GlobalDB
 local B = E:GetModule('Bags');
 
