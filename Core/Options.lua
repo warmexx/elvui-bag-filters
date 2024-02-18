@@ -43,7 +43,7 @@ U.AddCustomFilters = function()
             local filterIcon = U.GetFilterIcon(i);
 
             local SetFilter = function(location, link, type, subType)
-                if filter['itemClass' .. type] and filter['itemClass' .. type].enable then
+                if type and filter['itemClass' .. type] and filter['itemClass' .. type].enable then
                     return not filter['itemClass' .. type]['subClass' .. subType] or filter['itemClass' .. type]['subClass' .. subType].enable;
                 end
                 return false;
