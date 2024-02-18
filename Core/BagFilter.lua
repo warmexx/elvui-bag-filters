@@ -1,15 +1,13 @@
-local E, L, V, P, G = unpack(ElvUI); -- Import: Engine, Locales, PrivateDB, ProfileDB, GlobalDB
+local E, EL, V, P, G = unpack(ElvUI); -- Import: Engine, Locales, PrivateDB, ProfileDB, GlobalDB
 local B = E:GetModule('Bags');
+local EP = E.Libs.EP;
 
 local AddOnName, U = ...;
-local L = {};
-
-local isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE;
-local isClassic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC;
+local L = U.L;
 
 local function SetSlotFilter(self, bagID, slotID)
     local f = B:GetContainerFrame(bagID > (NUM_TOTAL_EQUIPPED_BAG_SLOTS or NUM_BAG_SLOTS) or bagID == BANK_CONTAINER);
-    if not (f and f.FilterHolder) then return; end
+    if not (f and f.FilterHolder) then return end
 
     if f.FilterHolder.active and self.Bags[bagID] and self.Bags[bagID][slotID] then
         local location = { bagID = bagID, slotIndex = slotID };
@@ -25,7 +23,7 @@ end
 
 local function SetFilter(self)
     local f = B:GetContainerFrame(self.isBank);
-    if not (f and f.FilterHolder) then return; end
+    if not (f and f.FilterHolder) then return end
 
     for i = 1, U.numFilters do
         if i ~= self:GetID() then
@@ -45,7 +43,7 @@ end
 
 local function ResetFilter(self)
     local f = B:GetContainerFrame(self.isBank);
-    if not (f and f.FilterHolder) then return; end
+    if not (f and f.FilterHolder) then return end
 
     if f.FilterHolder.active then
         f.FilterHolder[f.FilterHolder.active]:SetChecked(nil);
@@ -72,7 +70,7 @@ local function AddFilterButtons(f, isBank)
         if not f.FilterHolder[i] then
             local name, icon, func = unpack(filter);
 
-            if isClassic then
+            if E.Classic then
                 f.FilterHolder[i] = CreateFrame('CheckButton', nil, f.FilterHolder);
             else
                 f.FilterHolder[i] = CreateFrame('CheckButton', nil, f.FilterHolder, 'BackdropTemplate');
@@ -111,11 +109,11 @@ local function AddFilterButtons(f, isBank)
 end
 
 local function AddMenuButton(isBank)
-    if E.private.bags.enable ~= true then return; end
+    if E.private.bags.enable ~= true then return end
     local f = B:GetContainerFrame(isBank);
 
-    if not f or f.FilterHolder then return; end
-    if isClassic then
+    if not f or f.FilterHolder then return end
+    if E.Classic then
         f.FilterHolder = CreateFrame('Button', nil, f);
     else
         f.FilterHolder = CreateFrame('Button', nil, f, 'BackdropTemplate');
@@ -124,18 +122,18 @@ local function AddMenuButton(isBank)
     f.FilterHolder:SetTemplate('Transparent');
     f.FilterHolder:Hide();
 
-    if isClassic then
+    if E.Classic then
         f.filterButton = CreateFrame('Button', nil, f.holderFrame);
     else
         f.filterButton = CreateFrame('Button', nil, f.holderFrame, 'BackdropTemplate');
     end
     f.filterButton:SetSize(16 + E.Border, 16 + E.Border);
     f.filterButton:SetTemplate();
-    f.filterButton:SetPoint("RIGHT", f.sortButton, "LEFT", -5, 0);
-    f.filterButton:SetNormalTexture('Interface/AddOns/ElvUI_Bagfilter/BagFilter');
+    f.filterButton:SetPoint('RIGHT', f.sortButton, 'LEFT', -5, 0);
+    f.filterButton:SetNormalTexture('Interface/AddOns/ElvUI_BagFilter/BagFilter');
     f.filterButton:GetNormalTexture():SetTexCoord(unpack(E.TexCoords));
     f.filterButton:GetNormalTexture():SetInside();
-    f.filterButton:SetPushedTexture('Interface/AddOns/ElvUI_Bagfilter/BagFilter');
+    f.filterButton:SetPushedTexture('Interface/AddOns/ElvUI_BagFilter/BagFilter');
     f.filterButton:GetPushedTexture():SetTexCoord(unpack(E.TexCoords));
     f.filterButton:GetPushedTexture():SetInside();
     f.filterButton:StyleButton(nil, true);
@@ -152,30 +150,12 @@ local function AddMenuButton(isBank)
     end);
 
     -- realign
-    f.bagsButton:SetPoint("RIGHT", f.filterButton, "LEFT", -5, 0);
+    f.bagsButton:SetPoint('RIGHT', f.filterButton, 'LEFT', -5, 0);
 
     AddFilterButtons(f, isBank);
 end
 
-do
-    L.Weapon = AUCTION_CATEGORY_WEAPONS;
-    L.Armor = AUCTION_CATEGORY_ARMOR;
-    L.Container = AUCTION_CATEGORY_CONTAINERS;
-    L.Consumable = AUCTION_CATEGORY_CONSUMABLES;
-    L.Glyph = AUCTION_CATEGORY_GLYPHS;
-    L.TradeGood = AUCTION_CATEGORY_TRADE_GOODS;
-    L.Recipe = AUCTION_CATEGORY_RECIPES;
-    L.Gem = AUCTION_CATEGORY_GEMS;
-    L.Misc = AUCTION_CATEGORY_MISCELLANEOUS;
-    L.Quest = AUCTION_CATEGORY_QUEST_ITEMS;
-    L.BattlePets = AUCTION_CATEGORY_BATTLE_PETS;
-    L.Enhancement = AUCTION_CATEGORY_ITEM_ENHANCEMENT;
-    L.New = NEW;
-
-    L.All = ALL;
-    L.Equipment = L.Weapon .. ' & ' .. L.Armor;
-    L.Filter = FILTER;
-
+function U.Initialize()
     U.Filters = {
         { L.All, 'Interface/Icons/INV_Misc_EngGizmos_17',
           function(location, link, type, subType)
@@ -198,7 +178,7 @@ do
               return type == Enum.ItemClass.Questitem;
           end
         },
-        { L.TradeGood, 'Interface/Icons/INV_Fabric_Silk_02',
+        { L.Tradegoods, 'Interface/Icons/INV_Fabric_Silk_02',
           function(location, link, type, subType)
               return type == Enum.ItemClass.Tradegoods or
                      type == Enum.ItemClass.Recipe or
@@ -207,29 +187,15 @@ do
                      type == Enum.ItemClass.Glyph;
           end
         },
-        { L.Misc, 'Interface/Icons/INV_Misc_Rune_01',
+        { L.Miscellaneous, 'Interface/Icons/INV_Misc_Rune_01',
           function(location, link, type, subType)
               return type == Enum.ItemClass.Miscellaneous or
                      type == Enum.ItemClass.Container;
           end
         },
-        { L.New, 'Interface/PaperDollInfoFrame/UI-GearManager-ItemIntoBag',
-          function(location, link, type, subType)
-              return C_NewItems.IsNewItem(location.bagID, location.slotIndex);
-          end
-        }
     };
 
-    if isRetail then
-        table.insert(U.Filters, table.getn(U.Filters),
-            { L.BattlePets, 'Interface/Icons/INV_Pet_BattlePetTraining',
-              function(location, link, type, subType)
-                  return type == Enum.ItemClass.Battlepet or
-                        (type == Enum.ItemClass.Miscellaneous and subType == Enum.ItemMiscellaneousSubclass.CompanionPet);
-              end
-            }
-        )
-    end
+    U.AddCustomFilters();
 
     U.numFilters = #U.Filters;
 
@@ -241,5 +207,7 @@ do
         SetSlotFilter(frame, bagID, slotID);
     end);
 
-    E.Libs.EP:RegisterPlugin(AddOnName);
+    EP:RegisterPlugin(AddOnName, U.Options);
 end
+
+EP:HookInitialize(U, U.Initialize);

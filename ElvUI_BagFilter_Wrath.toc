@@ -1,5 +1,5 @@
-## Interface: 100205
-## Title: |cff1784d1ElvUI|r Bag Filters
+## Interface: 30403
+## Title: |cff1784d1ElvUI Wrath|r Bag Filters
 ## Version: @project-version@
 ## Author: Warmexx [Neighbours]
 ## Dependencies: ElvUI
@@ -10,6 +10,6 @@
 ## X-WoWI-ID: 26030
 ## X-Wago-ID: WL6JJj6v
 
-Mainline\ItemClass.lua
+Wrath\ItemClass.lua
 
 Core\Load.xml
