@@ -3,6 +3,9 @@ local E, EL, V, P, G = unpack(ElvUI); -- Import: Engine, Locales, PrivateDB, Pro
 local AddOnName, U = ...;
 local L = U.L;
 
+local GetItemClassInfo = C_Item.GetItemClassInfo or GetItemClassInfo;
+local GetItemSubClassInfo = C_Item.GetItemSubClassInfo or GetItemSubClassInfo;
+
 U.Title = C_AddOns.GetAddOnMetadata(AddOnName, 'Title');
 U.numCustomFilters = 5;
 

@@ -5,6 +5,8 @@ local EP = E.Libs.EP;
 local AddOnName, U = ...;
 local L = U.L;
 
+local GetItemInfo = C_Item.GetItemInfo or GetItemInfo;
+
 local function SetSlotFilter(self, bagID, slotID)
     local f = B:GetContainerFrame(bagID > (NUM_TOTAL_EQUIPPED_BAG_SLOTS or NUM_BAG_SLOTS) or bagID == BANK_CONTAINER);
     if not (f and f.FilterHolder) then return end
