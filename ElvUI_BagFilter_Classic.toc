@@ -1,5 +1,5 @@
-## Interface: 11501
-## Title: |cff1784d1ElvUI Classic|r Bag Filters
+## Interface: 11502
+## Title: |cff1784d1ElvUI|r |cfd9b9b9bClassic|r Bag Filters
 ## Version: @project-version@
 ## Author: Warmexx [Neighbours]
 ## Dependencies: ElvUI
