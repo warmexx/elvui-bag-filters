@@ -159,3 +159,22 @@ U.Options = function()
         E.Options.args.bagFilter.args['custom' .. i] = group;
     end
 end
+
+ElvUI_BagFilter = {
+    DumpClasses = function()
+        for i = 0, 100 do
+            local name = GetItemClassInfo(i);
+            if (name) then
+                print(i, name);
+            end
+        end
+    end,
+    DumpSubClasses = function(classID)
+        for i = 0, 100 do
+            local name = GetItemSubClassInfo(classID, i);
+            if (name) then
+                print(i, name);
+            end
+        end
+    end
+};
