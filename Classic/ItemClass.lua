@@ -27,7 +27,7 @@ local ItemWeaponSubclass = {
     Thrown = 16,
     Crossbow = 18,
     Wand = 19,
-    Fishingpole = 20
+    FishingPole = 20
 };
 
 local ItemArmorSubclass = {
@@ -49,8 +49,8 @@ local ItemProjectileSubclass = {
 };
 
 local ItemTradegoodsSubclass =  {
-    Tradegoods = 0,
-    Parts = 1,
+    TradeGood = 0,
+    Part = 1,
     Explosive = 2,
     Device = 3
 };
@@ -79,79 +79,79 @@ local ItemKeySubclass = {
 };
 
 U.ItemClass = {
-  { id = Enum.ItemClass.Consumable },
-  { id = Enum.ItemClass.Container, subClass = {
-      { id = ItemContainerSubclass.Bag },
-      { id = ItemContainerSubclass.SoulBag },
-      { id = ItemContainerSubclass.HerbBag },
-      { id = ItemContainerSubclass.EnchantingBag },
-      { id = ItemContainerSubclass.EngineeringBag }
-  }},
-  { id = Enum.ItemClass.Weapon, subClass = {
-      { id = ItemWeaponSubclass.Axe1H },
-      { id = ItemWeaponSubclass.Axe2H },
-      { id = ItemWeaponSubclass.Bows },
-      { id = ItemWeaponSubclass.Guns },
-      { id = ItemWeaponSubclass.Mace1H },
-      { id = ItemWeaponSubclass.Mace2H },
-      { id = ItemWeaponSubclass.Polearm },
-      { id = ItemWeaponSubclass.Sword1H },
-      { id = ItemWeaponSubclass.Sword2H },
-      { id = ItemWeaponSubclass.Staff },
-      { id = ItemWeaponSubclass.Exotic1H },
-      { id = ItemWeaponSubclass.Exotic2H },
-      { id = ItemWeaponSubclass.FistWeapon },
-      { id = ItemWeaponSubclass.Miscellaneous },
-      { id = ItemWeaponSubclass.Dagger },
-      { id = ItemWeaponSubclass.Thrown },
-      { id = ItemWeaponSubclass.Crossbow },
-      { id = ItemWeaponSubclass.Wand },
-      { id = ItemWeaponSubclass.Fishingpole }
-  }},
-  { id = Enum.ItemClass.Armor, subClass = {
-      { id = ItemArmorSubclass.Miscellaneous },
-      { id = ItemArmorSubclass.Cloth },
-      { id = ItemArmorSubclass.Leather },
-      { id = ItemArmorSubclass.Mail },
-      { id = ItemArmorSubclass.Plate },
-      { id = ItemArmorSubclass.Buckler },
-      { id = ItemArmorSubclass.Shield },
-      { id = ItemArmorSubclass.Libram },
-      { id = ItemArmorSubclass.Idol },
-      { id = ItemArmorSubclass.Totem }
-  }},
-  { id = Enum.ItemClass.Reagent },
-  { id = Enum.ItemClass.Projectile, subClass = {
-      { id = ItemProjectileSubclass.Arrow },
-      { id = ItemProjectileSubclass.Bullet }
-  }},
-  { id = Enum.ItemClass.Tradegoods, subClass = {
-      { id = ItemTradegoodsSubclass.Tradegoods },
-      { id = ItemTradegoodsSubclass.Parts },
-      { id = ItemTradegoodsSubclass.Explosive },
-      { id = ItemTradegoodsSubclass.Device },
-  }},
-  { id = Enum.ItemClass.Recipe, subClass = {
-      { id = ItemRecipeSubclass.Book },
-      { id = ItemRecipeSubclass.Leatherworking },
-      { id = ItemRecipeSubclass.Tailoring },
-      { id = ItemRecipeSubclass.Engineering },
-      { id = ItemRecipeSubclass.Blacksmithing },
-      { id = ItemRecipeSubclass.Cooking },
-      { id = ItemRecipeSubclass.Alchemy },
-      { id = ItemRecipeSubclass.FirstAid },
-      { id = ItemRecipeSubclass.Enchanting },
-      { id = ItemRecipeSubclass.Fishing }
-  }},
-  { id = Enum.ItemClass.Quiver, subClass = {
-      { id = ItemQuiverSubclass.Quiver },
-      { id = ItemQuiverSubclass.AmmoPouch }
-  }},
-  { id = Enum.ItemClass.Questitem },
-  { id = Enum.ItemClass.Key, subClass = {
-      { id = ItemKeySubclass.Key },
-      { id = ItemKeySubclass.Lockpick }
-  }},
-  { id = Enum.ItemClass.Miscellaneous },
-  { id = Enum.ItemClass.WoWToken }
+    { id = Enum.ItemClass.Consumable },
+    { id = Enum.ItemClass.Container, subClass = {
+        { id = ItemContainerSubclass.Bag },
+        { id = ItemContainerSubclass.SoulBag },
+        { id = ItemContainerSubclass.HerbBag },
+        { id = ItemContainerSubclass.EnchantingBag },
+        { id = ItemContainerSubclass.EngineeringBag }
+    }},
+    { id = Enum.ItemClass.Weapon, subClass = {
+        { id = ItemWeaponSubclass.Axe1H },
+        { id = ItemWeaponSubclass.Axe2H },
+        { id = ItemWeaponSubclass.Bows },
+        { id = ItemWeaponSubclass.Guns },
+        { id = ItemWeaponSubclass.Mace1H },
+        { id = ItemWeaponSubclass.Mace2H },
+        { id = ItemWeaponSubclass.Polearm },
+        { id = ItemWeaponSubclass.Sword1H },
+        { id = ItemWeaponSubclass.Sword2H },
+        { id = ItemWeaponSubclass.Staff },
+        { id = ItemWeaponSubclass.Exotic1H },
+        { id = ItemWeaponSubclass.Exotic2H },
+        { id = ItemWeaponSubclass.FistWeapon },
+        { id = ItemWeaponSubclass.Miscellaneous },
+        { id = ItemWeaponSubclass.Dagger },
+        { id = ItemWeaponSubclass.Thrown },
+        { id = ItemWeaponSubclass.Crossbow },
+        { id = ItemWeaponSubclass.Wand },
+        { id = ItemWeaponSubclass.FishingPole }
+    }},
+    { id = Enum.ItemClass.Armor, subClass = {
+        { id = ItemArmorSubclass.Miscellaneous },
+        { id = ItemArmorSubclass.Cloth },
+        { id = ItemArmorSubclass.Leather },
+        { id = ItemArmorSubclass.Mail },
+        { id = ItemArmorSubclass.Plate },
+        { id = ItemArmorSubclass.Buckler },
+        { id = ItemArmorSubclass.Shield },
+        { id = ItemArmorSubclass.Libram },
+        { id = ItemArmorSubclass.Idol },
+        { id = ItemArmorSubclass.Totem }
+    }},
+    { id = Enum.ItemClass.Reagent },
+    { id = Enum.ItemClass.Projectile, subClass = {
+        { id = ItemProjectileSubclass.Arrow },
+        { id = ItemProjectileSubclass.Bullet }
+    }},
+    { id = Enum.ItemClass.Tradegoods, subClass = {
+        { id = ItemTradegoodsSubclass.TradeGood },
+        { id = ItemTradegoodsSubclass.Part },
+        { id = ItemTradegoodsSubclass.Explosive },
+        { id = ItemTradegoodsSubclass.Device },
+    }},
+    { id = Enum.ItemClass.Recipe, subClass = {
+        { id = ItemRecipeSubclass.Book },
+        { id = ItemRecipeSubclass.Leatherworking },
+        { id = ItemRecipeSubclass.Tailoring },
+        { id = ItemRecipeSubclass.Engineering },
+        { id = ItemRecipeSubclass.Blacksmithing },
+        { id = ItemRecipeSubclass.Cooking },
+        { id = ItemRecipeSubclass.Alchemy },
+        { id = ItemRecipeSubclass.FirstAid },
+        { id = ItemRecipeSubclass.Enchanting },
+        { id = ItemRecipeSubclass.Fishing }
+    }},
+    { id = Enum.ItemClass.Quiver, subClass = {
+        { id = ItemQuiverSubclass.Quiver },
+        { id = ItemQuiverSubclass.AmmoPouch }
+    }},
+    { id = Enum.ItemClass.Questitem },
+    { id = Enum.ItemClass.Key, subClass = {
+        { id = ItemKeySubclass.Key },
+        { id = ItemKeySubclass.Lockpick }
+    }},
+    { id = Enum.ItemClass.Miscellaneous },
+    { id = Enum.ItemClass.WoWToken }
 };
