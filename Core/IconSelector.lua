@@ -38,7 +38,7 @@ function BagFilterPopupFrameMixin:OnShow()
     self:Initialize();
 
     self.iconDataProvider = CreateAndInitFromMixin(IconDataProviderMixin, IconDataProviderExtraType.None);
-    self.BorderBox.IconTypeDropDown:SetSelectedValue(IconSelectorPopupFrameIconFilterTypes.All);
+    self:SetIconFilter(IconSelectorPopupFrameIconFilterTypes.All);
     self:Update();
     self.BorderBox.IconSelectorEditBox:OnTextChanged();
 
