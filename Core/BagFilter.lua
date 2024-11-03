@@ -129,7 +129,7 @@ local function AddMenuButton(isBank)
     else
         f.filterButton = CreateFrame('Button', nil, f.holderFrame, 'BackdropTemplate');
     end
-    f.filterButton:SetSize(16 + E.Border, 16 + E.Border);
+    f.filterButton:SetSize(20, 20);
     f.filterButton:SetTemplate();
     f.filterButton:SetPoint('RIGHT', f.sortButton, 'LEFT', -5, 0);
     f.filterButton:SetNormalTexture('Interface/AddOns/ElvUI_BagFilter/BagFilter');
