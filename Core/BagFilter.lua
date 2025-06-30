@@ -64,8 +64,8 @@ local function ResetFilter(self)
 end
 
 local function AddFilterButtons(f, isBank)
-    local buttonSize = isBank and B.db.bankSize or B.db.bagSize;
-    local buttonSpacing = E.Border * 2;
+	local buttonSize = E:Scale(isBank and B.db.bankSize or B.db.bagSize) + 2;
+	local buttonSpacing = (isBank and B.db.bankButtonSpacing or B.db.bagButtonSpacing) + 2;
     local lastContainerButton;
 
     for i, filter in ipairs(U.Filters) do
@@ -96,7 +96,7 @@ local function AddFilterButtons(f, isBank)
             f.BagFilter[i].iconTexture:SetTexture(icon);
         end
 
-        f.BagFilter:Size(((buttonSize + buttonSpacing) * i) + buttonSpacing, buttonSize + (buttonSpacing * 2));
+        f.BagFilter:Size(((buttonSize + buttonSpacing) * i) + buttonSpacing - 1, buttonSize + (buttonSpacing * 2));
 
         f.BagFilter[i]:Size(buttonSize);
         f.BagFilter[i]:ClearAllPoints();
