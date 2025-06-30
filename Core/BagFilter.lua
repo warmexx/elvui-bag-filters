@@ -13,8 +13,7 @@ local function SetSlotFilter(self, bagID, slotID)
 
     if f.BagFilter.active and self.Bags[bagID] and self.Bags[bagID][slotID] then
         local location = { bagID = bagID, slotIndex = slotID };
-        local link;
-        link = C_Container.GetContainerItemLink(bagID, slotID);
+        local link = C_Container.GetContainerItemLink(bagID, slotID);
         if not link or f.BagFilter[f.BagFilter.active].filter(location, link, select(12, GetItemInfo(link))) then
             self.Bags[bagID][slotID].searchOverlay:Hide();
         else
@@ -28,9 +27,7 @@ local function SetFilter(self)
     if not (f and f.BagFilter) then return end
 
     for i = 1, U.numFilters do
-        if i ~= self:GetID() then
-            f.BagFilter[i]:SetChecked(nil);
-        end
+        f.BagFilter[i]:SetChecked(i == self:GetID());
     end
     f.BagFilter.active = self:GetID();
 
@@ -48,7 +45,7 @@ local function ResetFilter(self)
     if not (f and f.BagFilter) then return end
 
     if f.BagFilter.active then
-        f.BagFilter[f.BagFilter.active]:SetChecked(nil);
+        f.BagFilter[f.BagFilter.active]:SetChecked(false);
         f.BagFilter.active = nil;
 
         for i, bagID in ipairs(f.BagIDs) do
