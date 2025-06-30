@@ -31,12 +31,19 @@ local function SetFilter(self)
     end
     f.BagFilter.active = self:GetID();
 
-    for i, bagID in ipairs(f.BagIDs) do
-        if f.Bags[bagID] then
-            for slotID = 1, f.Bags[bagID].numSlots do
-                SetSlotFilter(f, bagID, slotID);
+    local function FilterBags(bagIDs)
+        for i, bagID in ipairs(bagIDs) do
+            if f.Bags[bagID] then
+                for slotID = 1, f.Bags[bagID].numSlots do
+                    SetSlotFilter(f, bagID, slotID);
+                end
             end
         end
+    end
+
+    FilterBags(f.BagIDs);
+    if E.Retail and self.isBank then
+        FilterBags(B.WarbandIndexs);
     end
 end
 
@@ -48,14 +55,21 @@ local function ResetFilter(self)
         f.BagFilter[f.BagFilter.active]:SetChecked(false);
         f.BagFilter.active = nil;
 
-        for i, bagID in ipairs(f.BagIDs) do
-            if f.Bags[bagID] then
-                for slotID = 1, f.Bags[bagID].numSlots do
-                    if f.Bags[bagID][slotID] then
-                        f.Bags[bagID][slotID].searchOverlay:Hide();
+        local function HideSearchOverlays(bagIDs)
+            for i, bagID in ipairs(bagIDs) do
+                if f.Bags[bagID] then
+                    for slotID = 1, f.Bags[bagID].numSlots do
+                        if f.Bags[bagID][slotID] then
+                            f.Bags[bagID][slotID].searchOverlay:Hide();
+                        end
                     end
                 end
             end
+        end
+
+        HideSearchOverlays(f.BagIDs);
+        if E.Retail and self.isBank then
+            HideSearchOverlays(B.WarbandIndexs);
         end
     end
 end
@@ -109,20 +123,30 @@ end
 
 local function AddMenuButton(isBank)
     if E.private.bags.enable ~= true then return end
-    local f = B:GetContainerFrame(isBank);
 
-    if not f or f.BagFilter then return end
-    if E.Classic then
-        f.BagFilter = CreateFrame('Button', nil, f);
+    local f = B:GetContainerFrame(isBank);
+    if not f then return end
+
+    local isWarband = E.Retail and isBank and B.WarbandBanks[B.BankTab];
+
+    if not f.BagFilter then
+        if E.Classic then
+            f.BagFilter = CreateFrame('Button', nil, f);
+        else
+            f.BagFilter = CreateFrame('Button', nil, f, 'BackdropTemplate');
+        end
+        f.BagFilter:SetTemplate('Transparent');
+        f.BagFilter:Hide();
     else
-        f.BagFilter = CreateFrame('Button', nil, f, 'BackdropTemplate');
+        f.BagFilter:Hide();
+        if not isWarband or f.BagFilter.WarbandHolder then return end
     end
-    f.BagFilter:Point('BOTTOMLEFT', f, 'TOPLEFT', 0, 1);
-    f.BagFilter:SetTemplate('Transparent');
-    f.BagFilter:Hide();
 
     if E.Classic then
         f.filterButton = CreateFrame('Button', nil, f.holderFrame);
+    elseif isWarband then
+        f.filterButton = CreateFrame('Button', nil, f.WarbandHolder, 'BackdropTemplate');
+        f.BagFilter.WarbandHolder = f.WarbandHolder;
     else
         f.filterButton = CreateFrame('Button', nil, f.holderFrame, 'BackdropTemplate');
     end
@@ -141,7 +165,17 @@ local function AddMenuButton(isBank)
     f.filterButton:SetScript('OnLeave', B.Tooltip_Hide);
     f.filterButton:SetScript('OnClick', function()
         f.ContainerHolder:Hide();
-        ToggleFrame(f.BagFilter);
+        if f.BagFilter:IsShown() then
+            f.BagFilter:Hide();
+        else
+            f.BagFilter:ClearAllPoints();
+            if isWarband then
+                f.BagFilter:Point('BOTTOMRIGHT', f, 'TOPRIGHT', 0, 1);
+            else
+                f.BagFilter:Point('BOTTOMLEFT', f, 'TOPLEFT', 0, 1);
+            end
+            f.BagFilter:Show();
+        end
     end);
 
     f.bagsButton:HookScript('OnClick', function()
