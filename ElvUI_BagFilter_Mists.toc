@@ -1,5 +1,5 @@
-## Interface: 40402
-## Title: |cff1784d1ElvUI|r |cfd9b9b9bCataclysm|r Bag Filters
+## Interface: 50500
+## Title: |cff1784d1ElvUI|r |cfd9b9b9bMists|r Bag Filters
 ## Version: @project-version@
 ## Author: Warmexx [Neighbours]
 ## Dependencies: ElvUI
@@ -10,6 +10,6 @@
 ## X-WoWI-ID: 26030
 ## X-Wago-ID: WL6JJj6v
 
-Cata\ItemClass.lua
+Mists\ItemClass.lua
 
 Core\Load.xml

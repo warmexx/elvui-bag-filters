@@ -1,7 +1,7 @@
 local U = select(2, ...);
 
 local ItemConsumableSubclass = {
-    Generic = 0,
+    Consumable = 0,
     Potion = 1,
     Elixir = 2,
     Flask = 3,
@@ -22,7 +22,8 @@ local ItemContainerSubclass = {
     MiningBag = 6,
     LeatherworkingBag = 7,
     InscriptionBag = 8,
-    TackleBox = 9
+    TackleBox = 9,
+    CookingBag = 10
 };
 
 local ItemWeaponSubclass = {
@@ -58,7 +59,7 @@ local ItemGemSubclass = {
     Meta = 6,
     Simple = 7,
     Prismatic = 8,
-    Hydraulic = 9,
+    CrystalOfFear = 9,
     Cogwheel = 10
 };
 
@@ -68,7 +69,7 @@ local ItemArmorSubclass = {
     Leather = 2,
     Mail = 3,
     Plate = 4,
-    Buckler = 5,
+    Cosmetic = 5,
     Shield = 6,
     Libram = 7,
     Idol = 8,
@@ -91,7 +92,7 @@ local ItemTradegoodsSubclass =  {
     Cloth = 5,
     Leather = 6,
     MetalStone = 7,
-    Meat = 8,
+    Cooking = 8,
     Herb = 9,
     Elemental = 10,
     Other = 11,
@@ -144,12 +145,26 @@ local ItemGlyphSubclass = {
     Shaman = 7,
     Mage = 8,
     Warlock = 9,
-    Druid = 11
+    Monk = 10,
+    Druid = 11,
+};
+
+local ItemBattlePetSubclass = {
+    Humanoid = 0,
+    Dragonkin = 1,
+    Flying = 2,
+    Undead = 3,
+    Critter = 4,
+    Magic = 5,
+    Elemental = 6,
+    Beast = 7,
+    Aquatic = 8,
+    Mechanical = 9
 };
 
 U.ItemClass = {
     { id = Enum.ItemClass.Consumable, subClass = {
-        { id = ItemConsumableSubclass.Generic },
+        { id = ItemConsumableSubclass.Consumable },
         { id = ItemConsumableSubclass.Potion },
         { id = ItemConsumableSubclass.Elixir },
         { id = ItemConsumableSubclass.Flask },
@@ -169,7 +184,8 @@ U.ItemClass = {
         { id = ItemContainerSubclass.MiningBag },
         { id = ItemContainerSubclass.LeatherworkingBag },
         { id = ItemContainerSubclass.InscriptionBag },
-        { id = ItemContainerSubclass.TackleBox }
+        { id = ItemContainerSubclass.TackleBox },
+        { id = ItemContainerSubclass.CookingBag }
     }},
     { id = Enum.ItemClass.Weapon, subClass = {
         { id = ItemWeaponSubclass.Axe1H },
@@ -203,7 +219,7 @@ U.ItemClass = {
         { id = ItemGemSubclass.Meta },
         { id = ItemGemSubclass.Simple },
         { id = ItemGemSubclass.Prismatic },
-        { id = ItemGemSubclass.Hydraulic },
+        { id = ItemGemSubclass.CrystalOfFear },
         { id = ItemGemSubclass.Cogwheel }
     }},
     { id = Enum.ItemClass.Armor, subClass = {
@@ -212,7 +228,7 @@ U.ItemClass = {
         { id = ItemArmorSubclass.Leather },
         { id = ItemArmorSubclass.Mail },
         { id = ItemArmorSubclass.Plate },
-        { id = ItemArmorSubclass.Buckler },
+        { id = ItemArmorSubclass.Cosmetic },
         { id = ItemArmorSubclass.Shield },
         { id = ItemArmorSubclass.Libram },
         { id = ItemArmorSubclass.Idol },
@@ -234,7 +250,7 @@ U.ItemClass = {
         { id = ItemTradegoodsSubclass.Cloth },
         { id = ItemTradegoodsSubclass.Leather },
         { id = ItemTradegoodsSubclass.MetalStone },
-        { id = ItemTradegoodsSubclass.Meat },
+        { id = ItemTradegoodsSubclass.Cooking },
         { id = ItemTradegoodsSubclass.Herb },
         { id = ItemTradegoodsSubclass.Elemental },
         { id = ItemTradegoodsSubclass.Other },
@@ -283,7 +299,20 @@ U.ItemClass = {
         { id = ItemGlyphSubclass.Shaman },
         { id = ItemGlyphSubclass.Mage },
         { id = ItemGlyphSubclass.Warlock },
+        { id = ItemGlyphSubclass.Monk },
         { id = ItemGlyphSubclass.Druid }
+    }},
+    { id = Enum.ItemClass.Battlepet, subClass = {
+        { id = ItemBattlePetSubclass.Humanoid },
+        { id = ItemBattlePetSubclass.Dragonkin },
+        { id = ItemBattlePetSubclass.Flying },
+        { id = ItemBattlePetSubclass.Undead },
+        { id = ItemBattlePetSubclass.Critter },
+        { id = ItemBattlePetSubclass.Magic },
+        { id = ItemBattlePetSubclass.Elemental },
+        { id = ItemBattlePetSubclass.Beast },
+        { id = ItemBattlePetSubclass.Aquatic },
+        { id = ItemBattlePetSubclass.Mechanical }
     }},
     { id = Enum.ItemClass.WoWToken }
 };
