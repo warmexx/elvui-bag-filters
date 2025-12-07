@@ -206,6 +206,15 @@ local ItemProfessionSubclass = {
     Archaeology = 13
 };
 
+local ItemHousingSubclass = {
+    Decor = 0,
+    Dye = 1,
+    Room = 2,
+    RoomCustomization = 3,
+    ExteriorCustomization = 4,
+    ServiceItem = 5
+};
+
 U.ItemClass = {
     { id = Enum.ItemClass.Consumable, subClass = {
         { id = ItemConsumableSubclass.ExplosiveDevice },
@@ -340,6 +349,14 @@ U.ItemClass = {
     { id = Enum.ItemClass.Quiver, subClass = {
         { id = ItemQuiverSubclass.Quiver },
         { id = ItemQuiverSubclass.AmmoPouch }
+    }},
+    { id = Enum.ItemClass.Housing, subClass = {
+        { id = ItemHousingSubclass.Decor },
+        { id = ItemHousingSubclass.Dye },
+        { id = ItemHousingSubclass.Room },
+        { id = ItemHousingSubclass.RoomCustomization },
+        { id = ItemHousingSubclass.ExteriorCustomization },
+        { id = ItemHousingSubclass.ServiceItem }
     }},
     { id = Enum.ItemClass.Questitem },
     { id = Enum.ItemClass.Key, subClass = {

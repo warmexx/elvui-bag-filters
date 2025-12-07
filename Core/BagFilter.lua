@@ -228,6 +228,16 @@ function U.Initialize()
         },
     };
 
+    if E.Retail then
+        table.insert(U.Filters, 6,
+            { L.Housing, 'Interface/Icons/Garrison_Material',
+              function(location, link, type, subType)
+                  return type == Enum.ItemClass.Housing;
+              end
+            }
+        );
+    end
+
     U.AddCustomFilters();
 
     U.numFilters = #U.Filters;

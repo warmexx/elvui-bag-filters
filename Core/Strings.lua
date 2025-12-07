@@ -13,6 +13,7 @@ L.Consumable = AUCTION_CATEGORY_CONSUMABLES;
 L.Quest = AUCTION_CATEGORY_QUEST_ITEMS;
 L.Tradegoods = AUCTION_CATEGORY_TRADE_GOODS;
 L.Miscellaneous = AUCTION_CATEGORY_MISCELLANEOUS;
+L.Housing = AUCTION_CATEGORY_HOUSING;
 
 L['Custom Filter'] = 'Custom Filter';
 L['Change name/icon'] = 'Change name/icon';
