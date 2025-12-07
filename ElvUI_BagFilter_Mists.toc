@@ -1,4 +1,4 @@
-## Interface: 50500
+## Interface: 50502
 ## Title: |cff1784d1ElvUI|r |cfd9b9b9bMists|r Bag Filters
 ## Version: @project-version@
 ## Author: Warmexx [Neighbours]
